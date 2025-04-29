@@ -4,7 +4,7 @@ import { variable } from '../../../resources/variables/index';
 import { loginUseCases } from '../../use_cases/login.usecase';
 import { dashboardlements } from '../../pageobject/dashboard/dahboard.page';
 import { shipmentElements } from '../../pageobject/shipment/shipment.page';
-import { randomName, getRandomFiveDigitString } from '../../../utilities/random.helper';
+import { randomName, getRandomFiveDigit } from '../../../utilities/random.helper';
 
 let page: Page;
 let LoginElement: loginElements;
@@ -45,7 +45,7 @@ test.describe('Login saucelab',{tag: '@e2e'}, () => {
         await ShipmentElements.buttonCheckout().click();
         await ShipmentElements.inputFirstName().fill(randomName());
         await ShipmentElements.inputLastName().fill(randomName());
-        await ShipmentElements.inputPostalCode().fill(getRandomFiveDigitString());
+        await ShipmentElements.inputPostalCode().fill(getRandomFiveDigit());
         await ShipmentElements.buttonContinue().click();
         await expect(ShipmentElements.textCheckoutOverview()).toBeVisible();
     })

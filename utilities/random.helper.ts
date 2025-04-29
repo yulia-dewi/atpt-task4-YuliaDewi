@@ -5,8 +5,8 @@ export function randomName():string {
     return `${randomFirst}`;
 }
 
-export function getRandomFiveDigitString() {
+export function getRandomFiveDigit():string {
     const number = Math.floor(Math.random() * 99999) + 1;
-    
+
     return number.toString().padStart(5, '0');
 }
