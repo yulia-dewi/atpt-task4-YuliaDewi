@@ -1,6 +1,6 @@
 import { configVar } from "./config";
 
 export const configDev : configVar = {
-    username: 'problem_user',
+    username: 'standard_user',
     password: 'secret_sauce',
   };
