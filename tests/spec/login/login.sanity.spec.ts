@@ -3,6 +3,8 @@ import { loginElements } from '../../pageobject/login/login.page'
 import { variable } from '../../../resources/variables/index';
 import { loginUseCases } from '../../use_cases/login.usecase';
 
+// test.describe.configure({ mode : 'parallel' })
+
 test.describe('Login saucelab', () => {
     let LoginElement: loginElements;
     let LoginUseCases: loginUseCases;
@@ -13,7 +15,7 @@ test.describe('Login saucelab', () => {
         await page.goto("https://www.saucedemo.com/v1/");
     });
 
-    test("login incorrect",{tag: '@regression'}, async ({page}) => {
+    test("login incorrect",{tag: '@error'}, async ({page}) => {
         await LoginElement.fieldUsernamePassword("text").fill("standard_sauces");
         await LoginElement.fieldUsernamePassword("password").fill(variable.password);
         await LoginElement.buttonLogin().click();
@@ -23,7 +25,7 @@ test.describe('Login saucelab', () => {
         // console.log(errorMessage);
     })
 
-    test("login with empty username",{tag: ['@sanity', '@regression']}, async ({page}) => {
+    test("login with empty username",{tag: ['@error', '@empty']}, async ({page}) => {
         await LoginElement.fieldUsernamePassword("password").fill(variable.password);
         await LoginElement.buttonLogin().click();
 
@@ -32,7 +34,7 @@ test.describe('Login saucelab', () => {
         // console.log(errorMessage);
     })
 
-    test("login with empty password",{tag: '@sanity'}, async ({page}) => {
+    test("login with empty password",{tag: ['@error','@empty']}, async ({page}) => {
         await LoginElement.fieldUsernamePassword("text").fill(variable.username);
         await LoginElement.buttonLogin().click();
 
@@ -41,7 +43,7 @@ test.describe('Login saucelab', () => {
         // console.log(errorMessage);
     })
 
-    test.skip("login with no internet connection",{tag: ['@sanity']}, async ({page}) => {
+    test.skip("login with no internet connection",{tag: ['@error', '@network']}, async ({page}) => {
         await LoginElement.fieldUsernamePassword("text").fill(variable.username);
         await LoginElement.fieldUsernamePassword("password").fill(variable.password);
         await LoginElement.buttonLogin().click();
@@ -59,7 +61,7 @@ test.describe('Login saucelab', () => {
         await expect(LoginElement.headerProduct()).toBeVisible();
     })
 
-    test("login success",{tag: ['@sanity','@regression','@success']}, async ({page}) => {
+    test("login success",{tag: '@success'}, async ({page}) => {
         await LoginUseCases.login_success(variable.username,variable.password);
     })
 })
