@@ -20,6 +20,10 @@ export class dashboardlements {
     }
 
     buttonCartFix() {
-        return this.page.locator('//*[@data-icon="shopping-cart"]')
+        return this.page.locator('//*[@data-icon="shopping-cart"]');
+    }
+
+    textYourCart() {
+        return this.page.locator('//div[text()="Your Cart"]');
     }
 }

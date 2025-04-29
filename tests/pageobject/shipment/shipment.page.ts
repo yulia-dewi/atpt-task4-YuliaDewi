@@ -30,4 +30,8 @@ export class shipmentElements {
     textOrderComplete() {
         return this.page.locator('//h2[text()="THANK YOU FOR YOUR ORDER"]');
     }
+
+    textCheckoutOverview() {
+        return this.page.locator('//div[text()="Checkout: Overview"]')
+    }
 }
