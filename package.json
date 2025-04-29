@@ -1,0 +1,24 @@
+{
+  "name": "pw",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test" : "playwright test",
+    "debug" : "playwright test --debug",
+    "sanity" : "playwright test --grep @sanity",
+    "regression" : "playwright test --grep @regression",
+    "staging" : "ENV=staging npx playwright test --debug",
+    "staging_windows" : "set ENV=staging && npx playwright test --debug",
+    "record": "playwright codegen https://www.saucedemo.com/v1",
+    "ui" : "playwright test --ui",
+    "parallel" : "playwright test regression --headed --fully-parallel"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.2"
+  }
+}
