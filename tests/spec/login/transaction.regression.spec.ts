@@ -27,9 +27,14 @@ test.describe('Login saucelab', () => {
     })
 
     test("choose items",{tag: '@regression'}, async () => {
-        await DashboardElement.buttonAddToChartBackpack().click();
-        await DashboardElement.buttonAddToChartBoltTShirt().click();
-        await DashboardElement.buttonCart().click();
+        // await DashboardElement.buttonAddToChartBackpack().click();
+        // await DashboardElement.buttonAddToChartBoltTShirt().click();
+        // await DashboardElement.buttonCart().click();
+
+        await DashboardElement.buttonAddToChart("Sauce Labs Backpack").click();
+        await DashboardElement.buttonAddToChart("Sauce Labs Bike Light").click();
+        await DashboardElement.buttonAddToChart("Sauce Labs Onesie").click();
+        await DashboardElement.buttonCartFix().click();
     })
 
     test("order shipment",{tag: '@regression'}, async () => {
