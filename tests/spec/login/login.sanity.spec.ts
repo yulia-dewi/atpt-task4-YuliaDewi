@@ -41,7 +41,7 @@ test.describe('Login saucelab', () => {
         console.log(errorMessage);
     })
 
-    test("login success @regression",{tag: ['@test']}, async ({page}) => {
+    test("login with no internet connection",{tag: ['@test']}, async ({page}) => {
         await LoginElement.fieldUsernamePassword("text").fill(variable.username);
         await LoginElement.fieldUsernamePassword("password").fill(variable.password);
         // await LoginElement.buttonSubmit().click();
