@@ -1,8 +1,8 @@
 export function randomName():string {
-    const firstNames = ['Siti', 'Budi', 'Andi', 'Jono', 'Supri', 'Aldi', 'Bona', 'Rio'];
-    const randomFirst = firstNames[Math.floor(Math.random() * firstNames.length)];
+    const Names = ['Siti', 'Budi', 'Andi', 'Jono', 'Supri', 'Aldi', 'Bona', 'Rio'];
+    const randomName = Names[Math.floor(Math.random() * Names.length)];
 
-    return `${randomFirst}`;
+    return randomName;
 }
 
 export function getRandomFiveDigit():string {
