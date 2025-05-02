@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-import { expect } from "@playwright/test";
 import { loginController } from "../controller/login/login.controller";
 
 export class loginUseCases {
