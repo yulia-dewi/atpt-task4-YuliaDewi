@@ -5,6 +5,10 @@
 - Mac OS 10.15 or Greater.
 - Laptop / PC with RAM 8 GB or Higher.
 - Node.JS 16 or above (https://nodejs.org/en/download).
+- Visual Studio Code (https://code.visualstudio.com/download)
+- Plugin for Visual Studio Code :
+        - Playwright test for VSCode
+        - Playwright test Snippet
 
 ## Environment Variables
 This template use **dev** and **staging** environment which located on folder **resources/variables**
