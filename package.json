@@ -5,8 +5,9 @@
   "scripts": {
     "test" : "playwright test",
     "debug" : "playwright test --debug",
-    "sanity" : "playwright test --grep @sanity",
-    "regression" : "playwright test --grep @regression",
+    "error" : "playwright test --grep @error",
+    "regression" : "playwright test regression",
+    "sanity" : "playwright test sanity",
     "staging" : "ENV=staging npx playwright test --debug",
     "staging_windows" : "set ENV=staging && npx playwright test --debug",
     "record": "playwright codegen https://www.saucedemo.com/v1",
