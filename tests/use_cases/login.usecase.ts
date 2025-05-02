@@ -1,17 +1,16 @@
 import { Page } from "@playwright/test";
-import { loginElements } from "../pageobject/login/login.page";
-import { variable } from "../../resources/variables";
 import { expect } from "@playwright/test";
+import { loginController } from "../controller/login/login.controller";
 
 export class loginUseCases {
     constructor(private page: Page) {}
 
     async login_success(username: string, password: string) {
-        const LoginElement = new loginElements(this.page);
+        const LoginController = new loginController(this.page);
 
-        await LoginElement.fieldUsernamePassword("text").fill(username);
-        await LoginElement.fieldUsernamePassword("password").fill(password);
-        await LoginElement.buttonLogin().click();
-        await expect(LoginElement.headerProduct()).toBeVisible();
+        await LoginController.inputUsername(username);
+        await LoginController.inputPassword(password);
+        await LoginController.clickLoginButton();
+        await LoginController.headerVisible();
     }
 }

@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 
-export class dashboardlements {
+export class dashboardElements {
     constructor (private page : Page) {}
 
     buttonAddToChart(product: string) {
