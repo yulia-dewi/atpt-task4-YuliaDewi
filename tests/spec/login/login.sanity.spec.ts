@@ -1,17 +1,20 @@
-import { test} from '@playwright/test'
+import { test } from '@playwright/test'
 import { loginController } from '../../controller/login/login.controller';
 import { variable } from '../../../resources/variables/index';
 import { loginUseCases } from '../../use_cases/login.usecase';
+import { sharedController } from '../../controller/shared/shared.controller';
 
 // test.describe.configure({ mode : 'parallel' })
 
 test.describe('Login saucelab', () => {
     let LoginController: loginController;
     let LoginUseCases: loginUseCases;
+    let SharedController: sharedController;
 
     test.beforeEach(async ({ page }) => {
         LoginController = new loginController(page);
         LoginUseCases = new loginUseCases(page);
+        SharedController = new sharedController(page);
         await page.goto("https://www.saucedemo.com/v1/");
     });
 
@@ -20,6 +23,7 @@ test.describe('Login saucelab', () => {
         await LoginController.inputPassword(variable.password);
         await LoginController.clickLoginButton();
         await LoginController.verifyErrorMessage(/Username and password do not match any user in this service/)
+        await SharedController.visualRegression('not_match.png')
     })
 
     test("login with empty username",{tag: ['@error', '@empty']}, async () => {
@@ -27,6 +31,8 @@ test.describe('Login saucelab', () => {
         await LoginController.clickLoginButton();
 
         await LoginController.verifyErrorMessage(/Username is required/)
+        await SharedController.visualRegression('username_required.png')
+
     })
 
     test("login with empty password",{tag: ['@error','@empty']}, async () => {
@@ -34,6 +40,7 @@ test.describe('Login saucelab', () => {
         await LoginController.clickLoginButton();
 
         await LoginController.verifyErrorMessage(/Password is required/)
+        await SharedController.visualRegression('password_required.png')
     })
 
     test.skip("login with no internet connection",{tag: ['@error', '@network']}, async ({page}) => {
@@ -56,5 +63,6 @@ test.describe('Login saucelab', () => {
 
     test("login success",{tag: '@success'}, async () => {
         await LoginUseCases.login_success(variable.username,variable.password);
+        await SharedController.visualRegression('success.png')
     })
 })
