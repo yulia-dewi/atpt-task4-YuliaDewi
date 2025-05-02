@@ -12,7 +12,7 @@ let LoginUseCases: loginUseCases;
 
 test.describe.configure({ mode: 'serial' });
 
-test.describe('Login saucelab',{tag: '@e2e'}, () => {
+test.describe('Login saucelab',{tag: '@happyFlow'}, () => {
     test.beforeAll(async ({ browser }) => {
         const context = await browser.newContext();
         page = await context.newPage();
