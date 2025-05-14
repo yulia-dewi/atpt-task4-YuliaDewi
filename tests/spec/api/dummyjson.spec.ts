@@ -7,13 +7,8 @@ import { userService } from "../../api/service/dummyjson/get_user.service";
 // test.describe.configure({ mode: 'serial' });
 
 test.describe('login test case', async () => {
-    let loginService: MyLoginService;
-    let getUserService: userService;
-
-    test.beforeEach('preparation', async () => {
-        loginService = new MyLoginService();
-        getUserService = new userService();
-    })
+    const loginService: MyLoginService = new MyLoginService();
+    const getUserService: userService = new userService();
 
     test('Login failed', async () => {
         const {data , status} = await loginService.login(variable.username, variable.pwd);

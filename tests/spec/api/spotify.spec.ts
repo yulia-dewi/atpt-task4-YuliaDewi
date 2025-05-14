@@ -4,13 +4,10 @@ import { setAuth, auth as globalAuth } from "../../../auth/auth.store";
 import { searchArtistService } from "../../api/service/spotify/search_artist.service";
 
 test.describe('Oauth API test', async () => {
-    let loginService: oauthLoginService;
-    let searchArtistServices: searchArtistService;
+    let loginService: oauthLoginService = new oauthLoginService();
+    let searchArtistServices: searchArtistService = new searchArtistService();
 
-    test.beforeEach('Get token',async () => {
-        loginService = new oauthLoginService();
-        searchArtistServices = new searchArtistService();
-
+    test.beforeAll('Get token',async () => {
         const response = await loginService.login();
         setAuth(response.access_token);
     })
