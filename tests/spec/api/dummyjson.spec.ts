@@ -2,13 +2,13 @@ import test, { expect } from "@playwright/test"
 import { MyLoginService } from "../../api/service/dummyjson/login.service"
 import { variable } from "../../../resources/variables";
 import { setAuth } from "../../../auth/auth.store";
-import { userService } from "../../api/service/dummyjson/get_user.service";
+import { productService } from "../../api/service/dummyjson/get_product.service";
 
 // test.describe.configure({ mode: 'serial' });
 
 test.describe('login test case', async () => {
     const loginService: MyLoginService = new MyLoginService();
-    const getUserService: userService = new userService();
+    const getProductService: productService = new productService();
 
     test('Login failed', async () => {
         const {data , status} = await loginService.login(variable.username, variable.pwd);
@@ -36,7 +36,8 @@ test.describe('login test case', async () => {
     })
 
     test('get user', async () => {
-        const {status} = await getUserService.getUser();
+        const {data , status} = await getProductService.getProduct();
         expect(status).toBe(200);
+        expect(data).toBeTruthy();
     })
 })

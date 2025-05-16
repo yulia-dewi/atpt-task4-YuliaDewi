@@ -1,7 +1,7 @@
 import { authContext } from "../../context/api.context";
 
-export class userService {
-    async getUser() {
+export class productService {
+    async getProduct() {
         try {
             const context = await authContext();
             const response = await context.get('auth/products');
