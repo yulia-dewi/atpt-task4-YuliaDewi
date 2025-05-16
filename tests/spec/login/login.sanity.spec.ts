@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { loginController } from '../../controller/login/login.controller';
 import { variable } from '../../../resources/variables/index';
-import { loginUseCases } from '../../use_cases/login.usecase';
+import { loginUseCases } from '../../reusablecase/login.usecase';
 import { sharedController } from '../../controller/shared/shared.controller';
 
 // test.describe.configure({ mode : 'parallel' })

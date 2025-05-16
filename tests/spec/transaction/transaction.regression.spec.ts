@@ -1,6 +1,6 @@
 import { test, Page} from '@playwright/test'
 import { variable } from '../../../resources/variables/index';
-import { loginUseCases } from '../../use_cases/login.usecase';
+import { loginUseCases } from '../../reusablecase/login.usecase';
 import { randomName, getRandomFiveDigit } from '../../../utilities/random.helper';
 import { dashboardController } from '../../controller/dashboard/dashboard.controller';
 import { shipmentController } from '../../controller/shipment/shipment.controller';
