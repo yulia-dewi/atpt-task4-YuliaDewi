@@ -1,4 +1,16 @@
 import { defineConfig, devices } from '@playwright/test';
+import * as dotenv from 'dotenv';
+
+/**
+ * See https://playwright.dev/docs/test-configuration.
+ * dotenv is not installed by default in the template
+ * @see https://github.com/motdotla/dotenv
+ * @see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+ * need to install dotenv with npm : npm install dotenv
+ * add import * as dotenv from 'dotenv' in playwright.config.ts
+ * add dotenv.config();
+ */
+dotenv.config();
 
 /**
  * Read environment variables from file.
