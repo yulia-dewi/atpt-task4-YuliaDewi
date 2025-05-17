@@ -15,7 +15,7 @@ test.describe('Login saucelab', () => {
         LoginController = new loginController(page);
         LoginUseCases = new loginUseCases(page);
         SharedController = new sharedController(page);
-        await page.goto("https://www.saucedemo.com/v1/");
+        await SharedController.accessUrl('https://www.saucedemo.com/v1/');
     });
 
     test("login incorrect",{tag: '@error'}, async () => {

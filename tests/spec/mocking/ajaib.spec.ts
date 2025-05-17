@@ -1,16 +1,28 @@
 import { test } from '@playwright/test';
 import { LoginAjaibController } from '../../controller/ajaib/login.controller';
-import { mockAjaibLoginRoute } from '../../../mock/routes/ajaib.route';
+import { interceptAjaibLoginRoute, interceptChangeAjaibLoginRoute } from '../../../mock/routes/ajaib.route';
 import { MockAjaibRequest } from '../../../mock/request/ajaib.mock';
+import { sharedController } from '../../controller/shared/shared.controller';
 
 test.describe('Request Mock Testing', () => {
   let loginAjaibController: LoginAjaibController;
+  let SharedController: sharedController;
 
   test.beforeEach(async ({ page }) => {
     loginAjaibController = new LoginAjaibController(page);
-    await page.goto('https://login.ajaib.co.id/login');
+    SharedController = new sharedController(page);
+    await SharedController.accessUrl('https://login.ajaib.co.id/login');
   })
   
+  test('Intercept Request', async ({ page, request }) => {
+    await interceptAjaibLoginRoute(page, request);
+
+    await loginAjaibController.inputUsername("candra@kode.id");
+    await loginAjaibController.inputPassword("rahasia");
+    await loginAjaibController.clickLoginButton();
+    await loginAjaibController.verifyErrorText();
+  });
+
   test('No Mock', async () => {
     await loginAjaibController.inputUsername("rahasia@kode.id");
     await loginAjaibController.inputPassword("rahasia");
@@ -18,8 +30,8 @@ test.describe('Request Mock Testing', () => {
     await loginAjaibController.verifyErrorText();
   });
 
-  test('Mock Username and Password', async ({ page, request }) => {
-    await mockAjaibLoginRoute(page, request, MockAjaibRequest);
+  test('Intercept Username and Password', async ({ page, request }) => {
+    await interceptChangeAjaibLoginRoute(page, request, MockAjaibRequest);
 
     await loginAjaibController.inputUsername("rahasia@kode.id");
     await loginAjaibController.inputPassword("rahasia");

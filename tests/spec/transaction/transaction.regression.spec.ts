@@ -22,7 +22,7 @@ test.describe('Login saucelab',{tag: '@happyFlow'}, () => {
         DashboardController = new dashboardController(page);
         ShipmentController = new shipmentController(page);
         SharedController = new sharedController(page);
-        await page.goto('https://www.saucedemo.com/v1/');
+        await SharedController.accessUrl('https://www.saucedemo.com/v1/');
     });
 
     test("login success", async () => {

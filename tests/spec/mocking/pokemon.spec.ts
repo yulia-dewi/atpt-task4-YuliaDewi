@@ -4,15 +4,18 @@ import { MockAbortPokemonRoute, MockStatusErrorPokemonRoute,
   MockPartialPokemonRoute, MockPokemonRoute, 
   MockUrlPokemonRoute} from '../../../mock/routes/pokemon.route';
 import { DashboardPokemonController } from '../../controller/pokemon/dashboard.controller';
+import { sharedController } from '../../controller/shared/shared.controller';
 
 // test.describe.configure({ mode: 'serial' });
 
 test.describe('Response Mock Testing', () => {
   let dashboardPokemonController: DashboardPokemonController;
+  let SharedController: sharedController;
 
   test.beforeEach(async ({ page }) => {
     dashboardPokemonController = new DashboardPokemonController(page);
-    await page.goto('https://pokeapi.co/');
+    SharedController = new sharedController(page);
+    await SharedController.accessUrl('https://pokeapi.co/');
   });
 
   test('Mock Whole Response', async ({ page }) => {
