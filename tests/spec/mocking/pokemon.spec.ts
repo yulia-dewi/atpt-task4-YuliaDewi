@@ -18,6 +18,13 @@ test.describe('Response Mock Testing', () => {
     await SharedController.accessUrl('https://pokeapi.co/');
   });
 
+  test('No Mock', async () => {
+    await dashboardPokemonController.clickMenu('ability/battle-armor');
+    await dashboardPokemonController.verifyText("battle-armor");
+    await dashboardPokemonController.verifyText("generation-iii");
+    await dashboardPokemonController.verifyText("https://pokeapi.co/api/v2/generation/3/");
+  });
+
   test('Mock Whole Response', async ({ page }) => {
     await MockPokemonRoute(page, MockPokemonResponse);
   

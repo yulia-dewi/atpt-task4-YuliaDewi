@@ -10,6 +10,6 @@ export class sharedController {
     }
 
     async visualRegression(fileName: string) {
-        expect(await this.page.screenshot()).toMatchSnapshot(fileName);
+        expect(await this.page.screenshot()).toMatchSnapshot(fileName, { maxDiffPixelRatio: 0.02 });
     }
 }

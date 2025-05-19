@@ -4,7 +4,7 @@ export async function interceptChangeAjaibLoginRoute(page: Page, request: APIReq
     await page.route('**/api/v7/login/', async (route: Route) => {
       const originalRequest = route.request();
   
-      const modifiedResponse = await request.fetch(originalRequest.url(), {
+      const modifiedRequest = await request.fetch(originalRequest.url(), {
         method: originalRequest.method(),
         headers: {
           ...originalRequest.headers(),
@@ -14,9 +14,9 @@ export async function interceptChangeAjaibLoginRoute(page: Page, request: APIReq
       });
   
       await route.fulfill({
-        status: modifiedResponse.status(),
-        headers: modifiedResponse.headers(),
-        body: await modifiedResponse.body(),
+        status: modifiedRequest.status(),
+        headers: modifiedRequest.headers(),
+        body: await modifiedRequest.body(),
       });
     });
   }
