@@ -15,7 +15,7 @@
     "parallel": "playwright test regression --headed --fully-parallel",
     "update-snapshots": "playwright test --update-snapshots",
     "installdotenv":"npm install dotenv",
-    "iphone": "DEVICE='iPhone 12' npx playwright test mobile --headed",
+    "iphone": "DEVICE='iPhone 12' npx playwright test simulator --headed",
     "emulator": "playwright test emulator",
     "simulator": "playwright test simulator --headed"
   },

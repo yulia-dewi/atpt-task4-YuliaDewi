@@ -8,7 +8,8 @@ const device = process.env.DEVICE || 'Pixel 5';
 
 test.use({
     ...devices[device],
-    // viewport: { width: 375, height: 812 }
+    // viewport: { width: 393, height: 727 },
+    // deviceScaleFactor: 2.75,
   });
 
 test.describe('Login saucelab', () => {
