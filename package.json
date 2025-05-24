@@ -17,7 +17,8 @@
     "installdotenv":"npm install dotenv",
     "iphone": "DEVICE='iPhone 12' npx playwright test simulator --headed",
     "emulator": "playwright test emulator",
-    "simulator": "playwright test simulator --headed"
+    "simulator": "playwright test simulator --headed",
+    "accessibility": "npm i -D @axe-core/playwright"
   },
   "keywords": [],
   "author": "",

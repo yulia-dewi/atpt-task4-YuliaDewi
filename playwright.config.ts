@@ -24,7 +24,7 @@ dotenv.config();
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  snapshotPathTemplate: 'snapshots/{testFileDir}/{testFileName}-snapshots/{arg}{ext}',
+  snapshotPathTemplate: 'snapshots/{testFileDir}/{testFileName}-snapshots/{arg}-{projectName}{ext}',
   timeout: 30_000,
   testDir: './tests/spec',
   /* Run tests in files in parallel */

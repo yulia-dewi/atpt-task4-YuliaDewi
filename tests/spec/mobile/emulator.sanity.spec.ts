@@ -1,4 +1,4 @@
-import { _android as android } from "playwright";
+import { Android, _android as android } from "playwright";
 import { Page, test } from "@playwright/test";
 import { loginController } from "../../controller/login/login.controller";
 import { loginUseCases } from "../../reusablecase/login.usecase";
@@ -7,6 +7,7 @@ import { sharedController } from "../../controller/shared/shared.controller";
 import { dashboardController } from "../../controller/dashboard/dashboard.controller";
 import { shipmentController } from "../../controller/shipment/shipment.controller";
 import { getRandomFiveDigit, randomName } from "../../../utilities/random.helper";
+import { launchEmulatorAndWait } from "../../../utilities/emulator.helper";
 
 let page: Page;
 let LoginController: loginController;
@@ -19,16 +20,19 @@ test.describe.configure({ mode: 'serial' });
 
 test.describe('Emulator test', () => {
     test.beforeAll("Launch the browser", async () => {
-        const [device] = await android.devices();
+        const device = await launchEmulatorAndWait('clone', '0000');
+        // const [device]= await android.devices();
         await device.shell('am force-stop com.android.chrome');
-        const context = await device.launchBrowser();
 
+        const context = await device.launchBrowser();
         page = context.pages()[0];
+
         LoginController = new loginController(page);
         DashboardController = new dashboardController(page);
         ShipmentController = new shipmentController(page);
         LoginUseCases = new loginUseCases(page);
         SharedController = new sharedController(page);
+
         await SharedController.accessUrl('https://www.saucedemo.com/v1/');
     })
 
