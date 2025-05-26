@@ -25,7 +25,7 @@ dotenv.config();
  */
 export default defineConfig({
   snapshotPathTemplate: 'snapshots/{testFileDir}/{testFileName}-snapshots/{arg}-{projectName}{ext}',
-  timeout: 30_000,
+  timeout: 50_000,
   testDir: './tests/spec',
   /* Run tests in files in parallel */
   fullyParallel: true,

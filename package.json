@@ -14,7 +14,7 @@
     "ui": "playwright test --ui",
     "parallel": "playwright test regression --headed --fully-parallel",
     "update-snapshots": "playwright test --update-snapshots",
-    "installdotenv":"npm install dotenv",
+    "installdotenv": "npm install dotenv",
     "iphone": "DEVICE='iPhone 12' npx playwright test simulator --headed",
     "emulator": "playwright test emulator",
     "simulator": "playwright test simulator --headed",
@@ -25,6 +25,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.2"
   },
