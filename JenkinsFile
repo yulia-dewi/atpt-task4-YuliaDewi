@@ -10,13 +10,13 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                // misal generate HTML report di folder html-report
-                sh 'mkdir -p html-report'
-                sh 'echo "<h1>Hello World</h1>" > html-report/index.html'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         // misal generate HTML report di folder html-report
+        //         sh 'mkdir -p html-report'
+        //         sh 'echo "<h1>Hello World</h1>" > html-report/index.html'
+        //     }
+        // }
 
         stage('Install Dependencies') {
             steps {
@@ -52,7 +52,6 @@ pipeline {
             publishHTML([
                 allowMissing: false, 
                 alwaysLinkToLastBuild: true, 
-                icon: '', 
                 keepAll: true, 
                 reportDir: 'playwright-report', 
                 reportFiles: 'index.html', 
