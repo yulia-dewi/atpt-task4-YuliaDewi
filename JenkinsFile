@@ -34,4 +34,10 @@ pipeline {
             archiveArtifacts artifacts: '**/playwright-report/**/*', allowEmptyArchive: true
         }
     }
+
+    publishHTML(target: [
+        reportDir: 'playwright-report',
+        reportFiles: 'index.html',
+        reportName: 'Automation Test Report'
+    ])
 }
