@@ -36,7 +36,7 @@ pipeline {
              publishHTML(target: [
                 reportDir: 'playwright-report',
                 reportFiles: 'index.html',
-                reportName: 'Automation Test Report'
+                reportName: 'Automation Test Report bro'
             ])
 
             sh 'ls -la playwright-report'
