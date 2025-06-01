@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/mascok/playwright_training.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
