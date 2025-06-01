@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-    nodejs 'NodeJS 24'
+        nodejs 'NodeJS 24'
     }
 
     environment {
@@ -10,6 +10,14 @@ pipeline {
     }
 
     stages {
+        stage('Build') {
+            steps {
+                // misal generate HTML report di folder html-report
+                sh 'mkdir -p html-report'
+                sh 'echo "<h1>Hello World</h1>" > html-report/index.html'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -30,18 +38,20 @@ pipeline {
     }
 
     post {
+        sh 'cd ..'
+        sh 'ls -al'
+        
         always {
-            // archiveArtifacts artifacts: '**/playwright-report/**/*', allowEmptyArchive: true
-
-            //  publishHTML(target: [
-            //     reportDir: 'playwright-report',
-            //     reportFiles: 'index.html',
-            //     reportName: 'Automation Test Report bro'
-            // ])
-
-            // sh 'ls -la playwright-report'
-
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, icon: '', keepAll: true, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Lihat Report disini', reportTitles: '', useWrapperFileDirectly: true])
+            publishHTML([
+                allowMissing: false, 
+                alwaysLinkToLastBuild: true, 
+                icon: '', 
+                keepAll: true, 
+                reportDir: 'html-report', 
+                reportFiles: 'index.html', 
+                reportName: 'Lihat Report disini yaa', 
+                reportTitles: '', 
+                useWrapperFileDirectly: true])
         }
     }
 }
