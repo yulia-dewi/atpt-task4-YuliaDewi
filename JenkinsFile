@@ -56,9 +56,9 @@ pipeline {
                 keepAll: true, 
                 reportDir: 'playwright-report', 
                 reportFiles: 'index.html', 
-                reportName: 'Lihat Report disini yaa', 
+                reportName: 'Lihat Report disini boss', 
                 reportTitles: '', 
-                useWrapperFileDirectly: true])
+                useWrapperFileDirectly: false])
         }
     }
 }
