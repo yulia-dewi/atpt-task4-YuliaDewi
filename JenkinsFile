@@ -42,6 +42,7 @@ pipeline {
                 sh 'ls -al'
                 sh 'ls -la html-report'
                 sh 'ls -la playwright-report'
+                sh 'sleep 2'
             }
         }
     }
