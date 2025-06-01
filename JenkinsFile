@@ -38,7 +38,7 @@ pipeline {
 
         stage('Cek folder') {
             steps {
-                sh "sh 'mkdir -p html-report && cp playwright-report/index.html html-report/"
+                sh 'mkdir -p html-report && cp playwright-report/index.html html-report/'
             }
         }
     }
