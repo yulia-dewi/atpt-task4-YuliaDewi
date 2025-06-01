@@ -35,12 +35,18 @@ pipeline {
                 sh 'npx playwright test --grep @happyFlow'
             }
         }
+
+        stage('Cek folder') {
+            steps {
+                sh 'cd ..'
+                sh 'ls -al'
+                sh 'ls -la html-report'
+                sh 'ls -la playwright-report'
+            }
+        }
     }
 
     post {
-        sh 'cd ..'
-        sh 'ls -al'
-        
         always {
             publishHTML([
                 allowMissing: false, 
