@@ -38,6 +38,8 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: 'Automation Test Report'
             ])
+
+            sh 'ls -la playwright-report'
         }
     }
 }
