@@ -38,9 +38,11 @@ pipeline {
 
         stage('Cek folder') {
             steps {
-                sh 'cd playwright-report'
-                sh 'ls -al'
-                sh 'cat index.html'
+                sh '''
+                    cd playwright-report
+                    ls -al
+                    cat index.html
+                '''
             }
         }
     }
