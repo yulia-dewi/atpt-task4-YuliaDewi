@@ -10,14 +10,6 @@ pipeline {
     }
 
     stages {
-        // stage('Build') {
-        //     steps {
-        //         // misal generate HTML report di folder html-report
-        //         sh 'mkdir -p html-report'
-        //         sh 'echo "<h1>Hello World</h1>" > html-report/index.html'
-        //     }
-        // }
-
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -35,12 +27,6 @@ pipeline {
                 sh 'npx playwright test --grep @happyFlow'
             }
         }
-
-        stage('Cek folder') {
-            steps {
-                sh 'mkdir -p html-report && cp playwright-report/index.html html-report/'
-            }
-        }
     }
 
     post {
@@ -49,7 +35,7 @@ pipeline {
                 allowMissing: false, 
                 alwaysLinkToLastBuild: true, 
                 keepAll: true, 
-                reportDir: 'html-report', 
+                reportDir: 'playwright-report', 
                 reportFiles: 'index.html', 
                 reportName: 'Lihat Report disini', 
                 reportTitles: '', 
