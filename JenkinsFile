@@ -36,15 +36,15 @@ pipeline {
             }
         }
 
-        stage('Cek folder') {
-            steps {
-                sh '''
-                    cd playwright-report
-                    ls -al
-                    cat index.html
-                '''
-            }
-        }
+        // stage('Cek folder') {
+        //     steps {
+        //         sh '''
+        //             cd playwright-report
+        //             ls -al
+        //             cat index.html
+        //         '''
+        //     }
+        // }
     }
 
     post {
