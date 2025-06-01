@@ -36,15 +36,11 @@ pipeline {
             }
         }
 
-        // stage('Cek folder') {
-        //     steps {
-        //         sh '''
-        //             cd playwright-report
-        //             ls -al
-        //             cat index.html
-        //         '''
-        //     }
-        // }
+        stage('Cek folder') {
+            steps {
+                sh "sh 'mkdir -p html-report && cp playwright-report/index.html html-report/"
+            }
+        }
     }
 
     post {
@@ -53,9 +49,9 @@ pipeline {
                 allowMissing: false, 
                 alwaysLinkToLastBuild: true, 
                 keepAll: true, 
-                reportDir: '**/playwright-report', 
+                reportDir: 'html-report', 
                 reportFiles: 'index.html', 
-                reportName: 'Lihat Report disini boss', 
+                reportName: 'Lihat Report disini', 
                 reportTitles: '', 
                 useWrapperFileDirectly: false])
         }
