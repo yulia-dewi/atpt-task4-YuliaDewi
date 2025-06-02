@@ -5,19 +5,19 @@ pipeline {
     nodejs 'NodeJS 24'
     }
 
-    // parameters {
-    //     choice(
-    //         name: 'TEST_SUITE',
-    //         choices: ['@happyFlow', '@error', '@empty', '@success', 'all'],
-    //         description: 'Pilih test suite yang ingin dijalankan'
-    //     )
+    parameters {
+        choice(
+            name: 'TEST_SUITE',
+            choices: ['@happyFlow', '@error', '@empty', '@success', 'all'],
+            description: 'Pilih test suite yang ingin dijalankan'
+        )
 
-    //     booleanParam(
-    //         name: 'HEADLESS',
-    //         defaultValue: true,
-    //         description: 'Jalankan test dalam mode headless?'
-    //     )
-    // }
+        booleanParam(
+            name: 'HEADLESS',
+            defaultValue: true,
+            description: 'Jalankan test dalam mode headless?'
+        )
+    }
 
     environment {
         HOME = "${env.WORKSPACE}"
