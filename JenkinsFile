@@ -48,10 +48,10 @@ pipeline {
                 alwaysLinkToLastBuild: true, 
                 keepAll: true, 
                 reportDir: 'playwright-report', 
-                reportFiles: 'readme.html', 
+                reportFiles: 'index.html', 
                 reportName: 'Lihat Report disini', 
                 reportTitles: '', 
-                useWrapperFileDirectly: false])
+                useWrapperFileDirectly: true])
         }
     }
 }
