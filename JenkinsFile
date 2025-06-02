@@ -29,11 +29,13 @@ pipeline {
         }
 
         stage('create file') {
-            sh '''
-                cd playwright-report
-                echo <h1>Test</h1> > readme.html
-                ls -la playwright-report
-            '''
+            steps {
+                sh '''
+                    cd playwright-report
+                    echo <h1>Test</h1> > readme.html
+                    ls -la playwright-report
+                '''
+            }
         }
     }
 
