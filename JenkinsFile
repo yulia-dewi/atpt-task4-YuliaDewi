@@ -27,18 +27,6 @@ pipeline {
                 sh 'npx playwright test --grep @happyFlow'
             }
         }
-
-        stage('create file') {
-            steps {
-                sh '''
-                    cd playwright-report
-                    echo '<h1>Test</h1>' > readme.html
-                    ls -al
-                    cp index.html readme.html
-                    ls -al ${WORKSPACE}
-                '''
-            }
-        }
     }
 
     post {
