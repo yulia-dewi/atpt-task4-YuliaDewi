@@ -43,15 +43,17 @@ pipeline {
 
     post {
         always {
-            publishHTML([
-                allowMissing: false, 
-                alwaysLinkToLastBuild: true, 
-                keepAll: true, 
-                reportDir: '/Users/candraoktavianto/.jenkins/workspace/FirstJob/playwright-report', 
-                reportFiles: 'index.html', 
-                reportName: 'Lihat Report disini', 
-                reportTitles: '', 
-                useWrapperFileDirectly: true])
+            // publishHTML([
+            //     allowMissing: false, 
+            //     alwaysLinkToLastBuild: true, 
+            //     keepAll: true, 
+            //     reportDir: '/Users/candraoktavianto/.jenkins/workspace/FirstJob/playwright-report', 
+            //     reportFiles: 'index.html', 
+            //     reportName: 'Lihat Report disini', 
+            //     reportTitles: '', 
+            //     useWrapperFileDirectly: true])
+
+            archiveArtifacts artifacts: 'playwright-report/**', caseSensitive: false, defaultExcludes: false, followSymlinks: false
         }
     }
 }
