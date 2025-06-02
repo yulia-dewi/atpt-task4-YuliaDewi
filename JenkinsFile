@@ -47,7 +47,7 @@ pipeline {
                 allowMissing: false, 
                 alwaysLinkToLastBuild: true, 
                 keepAll: true, 
-                reportDir: 'playwright-report', 
+                reportDir: '/Users/candraoktavianto/.jenkins/workspace/FirstJob/playwright-report', 
                 reportFiles: 'index.html', 
                 reportName: 'Lihat Report disini', 
                 reportTitles: '', 
