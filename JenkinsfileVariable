@@ -72,15 +72,17 @@ pipeline {
 
     post {
         always {
-            publishHTML([
-                allowMissing: false, 
-                alwaysLinkToLastBuild: true, 
-                keepAll: true, 
-                reportDir: 'playwright-report', 
-                reportFiles: 'index.html', 
-                reportName: 'Lihat Report disini', 
-                reportTitles: '', 
-                useWrapperFileDirectly: false])
+            // publishHTML([
+            //     allowMissing: false, 
+            //     alwaysLinkToLastBuild: true, 
+            //     keepAll: true, 
+            //     reportDir: 'playwright-report', 
+            //     reportFiles: 'index.html', 
+            //     reportName: 'Lihat Report disini', 
+            //     reportTitles: '', 
+            //     useWrapperFileDirectly: false])
+
+            archiveArtifacts artifacts: 'playwright-report/**', caseSensitive: false, defaultExcludes: false, followSymlinks: false
         }
     }
 }
