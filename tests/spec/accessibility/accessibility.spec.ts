@@ -45,7 +45,7 @@ test.describe('Accessibility Test', () => {
         expect(results.violations).toEqual([]);
     })
 
-    test.only('Check Accessibility with disable rules', async ({ page }, testInfo) => {
+    test('Check Accessibility with disable rules', async ({ page }, testInfo) => {
         const results = await new AxeBuilder({ page })
         .disableRules(["landmark-one-main","page-has-heading-one","region"])
         .analyze();

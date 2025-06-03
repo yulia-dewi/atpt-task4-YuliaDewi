@@ -63,7 +63,7 @@ test.describe('Visual Regression', () => {
         await expect(ELEMENT).toHaveScreenshot("take_table_screenshot.png");
     })
 
-    test.only("Take small difference screenshot", async ({ page }) => {
+    test("Take small difference screenshot", async ({ page }) => {
         // await SharedController.modifyVisualRegression({
         //     fileName: "take_small_difference_screenshot.png",
         //     options: {

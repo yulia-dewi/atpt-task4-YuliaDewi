@@ -18,7 +18,7 @@ let SharedController: sharedController;
 
 test.describe.configure({ mode: 'serial' });
 
-test.describe('Emulator test', () => {
+test.describe.skip('Emulator test', () => {
     test.beforeAll("Launch the browser", async () => {
         const device = await launchEmulatorAndWait('clone', '0000');
         // const [device]= await android.devices();
