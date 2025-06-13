@@ -20,6 +20,6 @@ export class loginElements {
     }
 
     headerProduct() {
-        return this.page.locator('//div[text()="Products"]')
+        return this.page.locator('//*[text()="Products"]')
     }
 }
