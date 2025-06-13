@@ -8,10 +8,10 @@ let SharedController: sharedController;
 test.describe('Accessibility Test', () => {
     test.beforeEach(async ({ page }) => {
         SharedController = new sharedController(page);
-        await SharedController.accessUrl('https://commitquality.com/practice-api');
+        await SharedController.accessUrl('https://easycash.id');
     })
 
-    test('Check Accessibility Entire Page', async ({ page }, testInfo) => {
+    test.only('Check Accessibility Entire Page', async ({ page }, testInfo) => {
         const results = await new AxeBuilder({ page }).analyze();
 
         await SharedController.accessibilityErrorCheck(results, testInfo);
