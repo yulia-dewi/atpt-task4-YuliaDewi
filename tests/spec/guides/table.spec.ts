@@ -11,7 +11,7 @@ test.describe('table', () => {
 
     test('search table', async ({ page }) => {
         const search: string = 'Legal'
-        
+
         await page.locator('#searchBox').fill(search);
         const tableRow = await page.locator('//div[@class="rt-tr-group"]').all();
         let columnValue: string[] = [];
@@ -22,6 +22,7 @@ test.describe('table', () => {
 
             for (let field = 0 ; field < column.length ; field++) {
                 const getText = await column[field].innerText();
+                
                 if (getText.trim() !== '') {
                     columnValue.push(getText);
                 } else {
