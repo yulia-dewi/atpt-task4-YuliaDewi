@@ -1,21 +1,22 @@
-import { test } from '@playwright/test';
+import { Download, test } from '@playwright/test';
 import { sharedController } from '../../controller/shared/shared.controller';
 import path from 'path';
 
 test.describe('download', () => {
     let SharedController: sharedController;
+    let download: Download;
 
     test.beforeEach(async ({ page }) => {
         SharedController = new sharedController(page);
         await SharedController.accessUrl('https://demoqa.com/upload-download');
-    })
 
-    test('download static file name', async ({ page }) => {
-        const [download] = await Promise.all([
+        [download] = await Promise.all([
             page.waitForEvent('download'),
             page.locator('#downloadButton').click(),
         ])
+    })
 
+    test('download static file name', async ({ page }) => {
         const fileName = download.suggestedFilename();
         const directory = process.cwd();
         const filePath = path.join(directory, 'download', fileName);
@@ -24,11 +25,6 @@ test.describe('download', () => {
     })
 
     test('download dynamic file name', async ({ page }) => {
-        const [download] = await Promise.all([
-            page.waitForEvent('download'),
-            page.locator('#downloadButton').click(),
-        ])
-
         let { name, ext } = path.parse(download.suggestedFilename());
         
         const timeStamp = Date.now();
@@ -39,6 +35,4 @@ test.describe('download', () => {
 
         await download.saveAs(filePath);
     })
-    
-    
 })
