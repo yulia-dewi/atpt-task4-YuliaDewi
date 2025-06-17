@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices, VideoMode } from '@playwright/test';
 import * as dotenv from 'dotenv';
 
 /**
@@ -11,7 +11,7 @@ import * as dotenv from 'dotenv';
  * add dotenv.config();
  */
 dotenv.config();
-
+const getVideo: VideoMode = process.env.VIDEO == "on" ? "on" : process.env.VIDEO == "failure" ? "retain-on-failure" : "off";
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -50,15 +50,15 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'off',
+    video: getVideo,
   },
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
 
     // {
     //   name: 'firefox',
@@ -71,10 +71,10 @@ export default defineConfig({
     // },
 
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
+    {
+      name: 'Mobile Chrome',
+      use: { ...devices['Pixel 5'] },
+    },
     // {
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },

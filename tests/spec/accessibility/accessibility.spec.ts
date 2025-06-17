@@ -11,7 +11,7 @@ test.describe('Accessibility Test', () => {
         await SharedController.accessUrl('https://easycash.id');
     })
 
-    test.only('Check Accessibility Entire Page', async ({ page }, testInfo) => {
+    test('Check Accessibility Entire Page', async ({ page }, testInfo) => {
         const results = await new AxeBuilder({ page }).analyze();
 
         await SharedController.accessibilityErrorCheck(results, testInfo);
