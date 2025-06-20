@@ -5,12 +5,11 @@ import { loginUseCases } from '../../reusablecase/login.usecase';
 import { sharedController } from '../../controller/shared/shared.controller';
 
 // test.describe.configure({ mode : 'parallel' })
+let LoginController: loginController;
+let LoginUseCases: loginUseCases;
+let SharedController: sharedController;
 
 test.describe('Login saucelab', () => {
-    let LoginController: loginController;
-    let LoginUseCases: loginUseCases;
-    let SharedController: sharedController;
-
     test.beforeEach(async ({ page }) => {
         LoginController = new loginController(page);
         LoginUseCases = new loginUseCases(page);
@@ -55,10 +54,10 @@ test.describe('Login saucelab', () => {
             console.log('Reload failed as expected due to offline mode.');
           }
           
-        await LoginController.headerNotVisible();
+        await LoginController.verifyHeaderNotVisible();
         await page.context().setOffline(false);
         await page.reload();
-        await LoginController.headerVisible();
+        await LoginController.verifyHeaderVisible();
     })
 
     test("login success",{tag: '@success'}, async () => {

@@ -1,6 +1,5 @@
-import { Page } from "playwright";
 import { loginElements } from "../../pageobject/login/login.page";
-import { expect } from "playwright/test";
+import { expect, Page } from "playwright/test";
 
 export class loginController {
     private LoginElements: loginElements;
@@ -24,11 +23,11 @@ export class loginController {
         await expect(this.LoginElements.textError()).toHaveText(errorMessage);
     }
 
-    async headerNotVisible() {
+    async verifyHeaderNotVisible() {
         await expect(this.LoginElements.headerProduct()).not.toBeVisible();
     }
 
-    async headerVisible() {
+    async verifyHeaderVisible() {
         await expect(this.LoginElements.headerProduct()).toBeVisible();
     }
 }

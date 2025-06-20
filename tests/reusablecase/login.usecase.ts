@@ -10,6 +10,6 @@ export class loginUseCases {
         await LoginController.inputUsername(username);
         await LoginController.inputPassword(password);
         await LoginController.clickLoginButton();
-        await LoginController.headerVisible();
+        await LoginController.verifyHeaderVisible();
     }
 }
