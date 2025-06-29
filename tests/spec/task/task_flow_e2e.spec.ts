@@ -1,7 +1,9 @@
-import { test, Page, expect } from '@playwright/test';
+import { test, Page, expect, Download } from '@playwright/test';
 import { sharedController } from '../../controller/shared/shared.controller';
 import { ExerciseController } from '../../controller/task/exercise.controller';
 import { ExercisePage } from '../../pageobject/task/exercise.page';
+import { totalPriceCalculation } from '../../../utilities/calculation.helper';
+import path from 'path';
 
 let page: Page;
 let SharedController: sharedController;
@@ -10,7 +12,10 @@ let exercisePage: ExercisePage;
 
 test.describe.configure({ mode: 'serial' });
 
-test.describe('Assignment 3 Solution Code', () => {
+test.describe('Assignment 4 Solution Code', () => {
+    const products: string[] = ["Blue Top", "Winter Top", "Madame Top For Women"];
+    let price: string[] = new Array();
+
     test.beforeAll(async ({ browser }) => {
         const context = await browser.newContext();
         page = await context.newPage();
@@ -88,33 +93,96 @@ test.describe('Assignment 3 Solution Code', () => {
         await exerciseController.verifyHeaderMenu('Delete Account');
     })
 
-    test('Delete Account', async () => {
-        await expect(page).toHaveScreenshot('homepage_before_delete.png', {
-            mask: [
-                exercisePage.slideCarousel()
-            ],
+    test('Enter Products page', async () => {
+        await exerciseController.clickProductButton();
+        await exerciseController.verifyHeaderProduct();
+
+        await expect(page).toHaveScreenshot('product.png', {
+            maxDiffPixelRatio: 0.01,
+            fullPage: true
+        });
+
+        for (let i: number = 0; i < products.length; i++) {
+            await exerciseController.clickProductName(products[i]);
+
+            const productPrice = await exerciseController.getProductPrice(products[i]);
+            price.push(productPrice);
+
+            await exerciseController.clickAddtoCart(products[i]);
+            await exerciseController.clickModalAddtoCart();
+        }
+    })
+
+    test('Enter Cart Page', async () => {
+        await exerciseController.clickCartButton();
+        await exerciseController.verifyHeaderCart();
+
+        await expect(page).toHaveScreenshot('cart.png', {
             maxDiffPixelRatio: 0.01
         });
 
-        await exerciseController.clickDeleteAccountButton();
-        await exerciseController.verifyTextResult('Account Deleted!');
+        for (let i: number = 0; i < products.length; i++) {
+            const index = i + 1;
+            const cartItem = await exerciseController.getCartItems(index);
+            const cartItemPrice = await exerciseController.getCartItemTotalPrice(index);
+
+            expect(cartItem).toEqual(products[i]);
+            expect(cartItemPrice).toEqual(price[i]);
+        }
     })
     
-    test('Delete Success', async () => {
-        await expect(page).toHaveScreenshot('Success Delete.png', {
+    test('Enter Checkout Page', async () => {
+        await exerciseController.clickCartProceed();
+        await exerciseController.verifyHeaderCheckout();
+
+        await expect(page).toHaveScreenshot('checkout.png', {
+            maxDiffPixelRatio: 0.01,
+            fullPage: true
+        });
+
+        const totalPrice = await exerciseController.getTotalPrice();
+        const calculation = await totalPriceCalculation(price);
+
+        expect(totalPrice).toEqual(calculation);
+    })
+    
+    test('Enter Payment Page', async () => {
+        await exerciseController.clickPlaceOrder();
+        await exerciseController.verifyHeaderPayment();
+
+        await expect(page).toHaveScreenshot('payment.png', {
             maxDiffPixelRatio: 0.01
         });
 
-        await exerciseController.clickContinueButton();
-        await exerciseController.verifyHeaderMenu('Signup');
-        await exerciseController.verifyHeaderMenu('Login');
-        await exerciseController.verifyHeaderMenuNotContainText('Delete Account');
+        await exerciseController.inputField('Name on Card', 'Candra Ok');
+        await exerciseController.inputField("Card Number",'10110111000111');
+        await exerciseController.inputField("CVC",'101');
+        await exerciseController.inputField("Expiration",'10');
+        await exerciseController.inputFieldYear('2010');
+    })
+    
+    test('Success Payment', async () => {
+        await exerciseController.clickSubmitButton();
+        await exerciseController.verifyTextResult('Order Placed!');
 
-        await expect(page).toHaveScreenshot('homepage_after_delete.png', {
-            mask: [
-                exercisePage.slideCarousel()
-            ],
+        await expect(page).toHaveScreenshot('success_payment.png', {
+            maxDiffPixelRatio: 0.01
+        });
+
+        const [download] = await Promise.all([
+            page.waitForEvent('download'),
+            exerciseController.clickDownloadInvoiceButton()
+        ])
+
+        const filePath = path.join(process.cwd(), 'download', download.suggestedFilename());
+        await download.saveAs(filePath);
+
+        await exerciseController.clickContinueButton();
+        await expect(page).toHaveURL('https://automationexercise.com/');
+
+        await expect(page).toHaveScreenshot('home.png', {
             maxDiffPixelRatio: 0.01
         });
     })
+    
 })
