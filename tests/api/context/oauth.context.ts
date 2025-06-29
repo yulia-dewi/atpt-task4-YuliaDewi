@@ -1,6 +1,6 @@
 import { expect, request } from "@playwright/test";
 import { APIRequestContext } from "playwright";
-import { setAuth, auth as globalAuth } from '../../../auth/auth.store';
+import { setAuth, globalAuth } from '../../../auth/auth.store';
 import { oauthLoginService } from "../service/spotify/login.service";
 import { argParser } from "../../../utilities/environment.helper";
 import { OauthUrl } from "../../../enum/oauth.enum";

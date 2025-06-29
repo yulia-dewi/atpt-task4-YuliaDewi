@@ -1,5 +1,5 @@
-export let auth: string;
+export let globalAuth: string;
 
 export function setAuth(value: string):void {
-    auth = value;
+    globalAuth = value;
   }

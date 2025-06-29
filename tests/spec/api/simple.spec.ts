@@ -14,8 +14,9 @@ test.describe('API Testing dengan Reqres.in', () => {
 
     test('GET /users?page=2 : List Users', async ({ request }) => {
       const response = await request.get('/api/users?page=2');
-      expect(response.status()).toBe(200);
       const body = await response.json();
+
+      expect(response.status()).toBe(200);
       expect(Array.isArray(body.data)).toBeTruthy();
       expect(body.data[0]).toMatchObject({
         id: expect.any(Number),
@@ -27,9 +28,10 @@ test.describe('API Testing dengan Reqres.in', () => {
       const response = await request.post('/api/users', {
         data: { name: 'morpheus', job: 'leader' }
       });
-      expect(response.status()).toBe(201);
+
       const body = await response.json();
 
+      expect(response.status()).toBe(201);
       expect(body).toMatchObject({
         name: 'morpheus',
         job: 'leader',
@@ -43,9 +45,9 @@ test.describe('API Testing dengan Reqres.in', () => {
         data: { name: 'morpheus', job: 'zion resident' }
       });
 
-      expect(response.status()).toBe(200);
       const body = await response.json();
 
+      expect(response.status()).toBe(200);
       expect(body).toMatchObject({
         name: 'morpheus',
         job: 'zion resident',

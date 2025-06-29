@@ -1,6 +1,6 @@
 import test, { expect } from "playwright/test";
 import { oauthLoginService } from "../../api/service/spotify/login.service";
-import { setAuth, auth as globalAuth } from "../../../auth/auth.store";
+import { setAuth } from "../../../auth/auth.store";
 import { searchArtistService } from "../../api/service/spotify/search_artist.service";
 
 test.describe('Oauth API test', async () => {

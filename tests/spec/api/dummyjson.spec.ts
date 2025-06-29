@@ -1,4 +1,4 @@
-import test, { expect } from "@playwright/test"
+import { test, expect } from "@playwright/test"
 import { MyLoginService } from "../../api/service/dummyjson/login.service"
 import { variable } from "../../../resources/variables";
 import { setAuth } from "../../../auth/auth.store";
@@ -39,5 +39,6 @@ test.describe('login test case', async () => {
         const {data , status} = await getProductService.getProduct();
         expect(status).toBe(200);
         expect(data).toBeTruthy();
+        console.log(data);
     })
 })
