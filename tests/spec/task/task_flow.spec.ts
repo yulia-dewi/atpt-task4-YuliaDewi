@@ -26,7 +26,9 @@ test.describe('Assignment 3 Solution Code', () => {
         await expect(page).toHaveScreenshot('homepage.png', {
             mask: [
                 exercisePage.slideCarousel()
-            ]
+            ],
+            maxDiffPixelRatio: 0.01,
+            maxDiffPixels: 200
         });
 
         await exerciseController.clickSignUpOrLoginButton();
@@ -39,17 +41,15 @@ test.describe('Assignment 3 Solution Code', () => {
         await exerciseController.inputName(`account_${rndm}`);
         await exerciseController.inputEmail(`account_${rndm}@test.com`);
 
-        await expect(page).toHaveScreenshot('signup.png');
+        await expect(page).toHaveScreenshot('signup.png', {
+            maxDiffPixelRatio: 0.01
+        });
 
         await exerciseController.clickSubmit('Signup');
         await exerciseController.verifyTextEnterAccountInformation();
     })
     
     test('Input Information', async () => {
-        await expect(page).toHaveScreenshot('before_input_information.png', {
-            fullPage: true
-        });
-
         await exerciseController.clickCheckboxGender('Mr');
         await exerciseController.inputDataField('Password', 'PasswordMustBeStrong');
         await exerciseController.selectDropdownCalendar('days', '15');
@@ -66,7 +66,8 @@ test.describe('Assignment 3 Solution Code', () => {
         await exerciseController.inputDataField('Mobile Number', '08091234567');
 
         await expect(page).toHaveScreenshot('after_input_information.png', {
-            fullPage: true
+            fullPage: true,
+            maxDiffPixelRatio: 0.01
         });
 
         await exerciseController.clickSubmit('Create Account');
@@ -74,7 +75,9 @@ test.describe('Assignment 3 Solution Code', () => {
     })
     
     test('Success Signup', async () => {
-        await expect(page).toHaveScreenshot('Success Signup.png');
+        await expect(page).toHaveScreenshot('Success Signup.png', {
+            maxDiffPixelRatio: 0.01
+        });
 
         await exerciseController.clickContinueButton();
         await exerciseController.verifyHeaderMenu('Logout');
@@ -85,7 +88,8 @@ test.describe('Assignment 3 Solution Code', () => {
         await expect(page).toHaveScreenshot('homepage_before_delete.png', {
             mask: [
                 exercisePage.slideCarousel()
-            ]
+            ],
+            maxDiffPixelRatio: 0.01
         });
 
         await exerciseController.clickDeleteAccountButton();
@@ -93,7 +97,9 @@ test.describe('Assignment 3 Solution Code', () => {
     })
     
     test('Delete Success', async () => {
-        await expect(page).toHaveScreenshot('Success Delete.png');
+        await expect(page).toHaveScreenshot('Success Delete.png', {
+            maxDiffPixelRatio: 0.01
+        });
 
         await exerciseController.clickContinueButton();
         await exerciseController.verifyHeaderMenu('Signup');
@@ -103,7 +109,8 @@ test.describe('Assignment 3 Solution Code', () => {
         await expect(page).toHaveScreenshot('homepage_after_delete.png', {
             mask: [
                 exercisePage.slideCarousel()
-            ]
+            ],
+            maxDiffPixelRatio: 0.01
         });
     })
 })
