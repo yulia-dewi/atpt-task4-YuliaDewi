@@ -24,7 +24,7 @@ pipeline {
 
         stage('Run Playwright Tests transaction') {
             steps {
-                sh 'npx playwright test --grep @happyFlow'
+                sh 'npx playwright test --grep @endtoend'
             }
         }
     }
