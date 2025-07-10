@@ -46,74 +46,74 @@ test.describe('Whole transaction process from registration until download invoic
     let email: string;
     let password: string;
 
-    // test("New User Signup", async () => {
+    test("New User Signup", async () => {
 
-    //     const randomString = Math.random().toString(36).substring(2, 8);
-    //     name = `${ydData.name}${randomString}`;
-    //     email = `${ydData.email}${randomString}@yopmail.com`;
-    //     password = `${ydData.password}${randomString}`;
+        const randomString = Math.random().toString(36).substring(2, 8);
+        name = `${ydData.name}${randomString}`;
+        email = `${ydData.email}${randomString}@yopmail.com`;
+        password = `${ydData.password}${randomString}`;
 
-    //     console.log (name);
-    //     console.log (email);
-    //     console.log (password);
-    //     await aeHomeController.clickSignup();  
-    //     await signupController.inputName(name);
-    //     await signupController.inputEmail(email);
-    //     await signupController.clickSignupButton();
+        console.log (name);
+        console.log (email);
+        console.log (password);
+        await aeHomeController.clickSignup();  
+        await signupController.inputName(name);
+        await signupController.inputEmail(email);
+        await signupController.clickSignupButton();
         
-    // })
+    })
 
-    // test("Enter Account Information", async () => {
-    //     console.log ("test2:",name);
-    //     console.log (email);
-    //     console.log (password);
-    //     await signupController.verifyInputAccountName(name);
-    //     await signupController.verifyInputAccountEmail(email);
-    //     await signupController.chooseGender("Mrs");
-    //     //await signupController.inputAccountName(name);
-    //     await signupController.inputAccountPassword(password);
-    //     await signupController.selectDob('days', '25');
-    //     await signupController.selectDob('months', '12');
-    //     await signupController.selectDob('years', '1983');
-    //     await signupController.clickNewsletter();
-    //     await signupController.clickOptin();
-    //     await signupController.inputFirstName(ydData.firstName);
-    //     await signupController.inputLastName(ydData.lastName);
-    //     await signupController.inputCompany(ydData.company);
-    //     await signupController.inputAddress1(ydData.address1);
-    //     await signupController.inputAddress2(ydData.address2);
-    //     await signupController.selectCountry();
-    //     await signupController.inputState(ydData.state);
-    //     await signupController.inputCity(ydData.city);
-    //     await signupController.inputZipcode(ydData.zipcode);
-    //     await signupController.inputMobile(ydData.mobile);
-    //     await signupController.clickButtonCreateAccount();
+    test("Enter Account Information", async () => {
+        console.log ("test2:",name);
+        console.log (email);
+        console.log (password);
+        await signupController.verifyInputAccountName(name);
+        await signupController.verifyInputAccountEmail(email);
+        await signupController.chooseGender("Mrs");
+        //await signupController.inputAccountName(name);
+        await signupController.inputAccountPassword(password);
+        await signupController.selectDob('days', '25');
+        await signupController.selectDob('months', '12');
+        await signupController.selectDob('years', '1983');
+        await signupController.clickNewsletter();
+        await signupController.clickOptin();
+        await signupController.inputFirstName(ydData.firstName);
+        await signupController.inputLastName(ydData.lastName);
+        await signupController.inputCompany(ydData.company);
+        await signupController.inputAddress1(ydData.address1);
+        await signupController.inputAddress2(ydData.address2);
+        await signupController.selectCountry();
+        await signupController.inputState(ydData.state);
+        await signupController.inputCity(ydData.city);
+        await signupController.inputZipcode(ydData.zipcode);
+        await signupController.inputMobile(ydData.mobile);
+        await signupController.clickButtonCreateAccount();
         
-    // })
+    })
 
-    // test("Account Created", async () => {
+    test("Account Created", async () => {
         
-    //     await signupController.verifyHeaderText();
-    //     await signupController.verifyCongratulationsText();
-    //     await signupController.verifyAdvantageText();
+        await signupController.verifyHeaderText();
+        await signupController.verifyCongratulationsText();
+        await signupController.verifyAdvantageText();
         
-    // })
+    })
 
-    // test("Back to Homepage and already logged in", async () => {
+    test("Back to Homepage and already logged in", async () => {
         
-    //     await signupController.buttonContinue();
-    //     await loginControllers.verifyLogin(name);
-
-    // })
-
-    test("Login account to skip register when scripting", async () => {
-        //need to choose want to login or signup
-        await aeHomeController.clickLogin();
-        await loginControllers.inputEmail(ydLogin.email);
-        await loginControllers.inputPassword(ydLogin.password);
-        await loginControllers.clickLoginButton();
+        await signupController.buttonContinue();
+        await loginControllers.verifyLogin(name);
 
     })
+
+    // test("Login account to skip register when scripting", async () => {
+    //     //need to choose want to login or signup
+    //     await aeHomeController.clickLogin();
+    //     await loginControllers.inputEmail(ydLogin.email);
+    //     await loginControllers.inputPassword(ydLogin.password);
+    //     await loginControllers.clickLoginButton();
+
+    // })
 
     test("Click menu Products", async () => {
         //need to choose want to login or signup
