@@ -46,74 +46,74 @@ test.describe('Whole transaction process from registration until download invoic
     let email: string;
     let password: string;
 
-    test("New User Signup", async () => {
+    // test("New User Signup", async () => {
 
-        const randomString = Math.random().toString(36).substring(2, 8);
-        name = `${ydData.name}${randomString}`;
-        email = `${ydData.email}${randomString}@yopmail.com`;
-        password = `${ydData.password}${randomString}`;
+    //     const randomString = Math.random().toString(36).substring(2, 8);
+    //     name = `${ydData.name}${randomString}`;
+    //     email = `${ydData.email}${randomString}@yopmail.com`;
+    //     password = `${ydData.password}${randomString}`;
 
-        console.log (name);
-        console.log (email);
-        console.log (password);
-        await aeHomeController.clickSignup();  
-        await signupController.inputName(name);
-        await signupController.inputEmail(email);
-        await signupController.clickSignupButton();
+    //     console.log (name);
+    //     console.log (email);
+    //     console.log (password);
+    //     await aeHomeController.clickSignup();  
+    //     await signupController.inputName(name);
+    //     await signupController.inputEmail(email);
+    //     await signupController.clickSignupButton();
         
-    })
+    // })
 
-    test("Enter Account Information", async () => {
-        console.log ("test2:",name);
-        console.log (email);
-        console.log (password);
-        await signupController.verifyInputAccountName(name);
-        await signupController.verifyInputAccountEmail(email);
-        await signupController.chooseGender("Mrs");
-        //await signupController.inputAccountName(name);
-        await signupController.inputAccountPassword(password);
-        await signupController.selectDob('days', '25');
-        await signupController.selectDob('months', '12');
-        await signupController.selectDob('years', '1983');
-        await signupController.clickNewsletter();
-        await signupController.clickOptin();
-        await signupController.inputFirstName(ydData.firstName);
-        await signupController.inputLastName(ydData.lastName);
-        await signupController.inputCompany(ydData.company);
-        await signupController.inputAddress1(ydData.address1);
-        await signupController.inputAddress2(ydData.address2);
-        await signupController.selectCountry();
-        await signupController.inputState(ydData.state);
-        await signupController.inputCity(ydData.city);
-        await signupController.inputZipcode(ydData.zipcode);
-        await signupController.inputMobile(ydData.mobile);
-        await signupController.clickButtonCreateAccount();
+    // test("Enter Account Information", async () => {
+    //     console.log ("test2:",name);
+    //     console.log (email);
+    //     console.log (password);
+    //     await signupController.verifyInputAccountName(name);
+    //     await signupController.verifyInputAccountEmail(email);
+    //     await signupController.chooseGender("Mrs");
+    //     //await signupController.inputAccountName(name);
+    //     await signupController.inputAccountPassword(password);
+    //     await signupController.selectDob('days', '25');
+    //     await signupController.selectDob('months', '12');
+    //     await signupController.selectDob('years', '1983');
+    //     await signupController.clickNewsletter();
+    //     await signupController.clickOptin();
+    //     await signupController.inputFirstName(ydData.firstName);
+    //     await signupController.inputLastName(ydData.lastName);
+    //     await signupController.inputCompany(ydData.company);
+    //     await signupController.inputAddress1(ydData.address1);
+    //     await signupController.inputAddress2(ydData.address2);
+    //     await signupController.selectCountry();
+    //     await signupController.inputState(ydData.state);
+    //     await signupController.inputCity(ydData.city);
+    //     await signupController.inputZipcode(ydData.zipcode);
+    //     await signupController.inputMobile(ydData.mobile);
+    //     await signupController.clickButtonCreateAccount();
         
-    })
+    // })
 
-    test("Account Created", async () => {
+    // test("Account Created", async () => {
         
-        await signupController.verifyHeaderText();
-        await signupController.verifyCongratulationsText();
-        await signupController.verifyAdvantageText();
+    //     await signupController.verifyHeaderText();
+    //     await signupController.verifyCongratulationsText();
+    //     await signupController.verifyAdvantageText();
         
-    })
+    // })
 
-    test("Back to Homepage and already logged in", async () => {
+    // test("Back to Homepage and already logged in", async () => {
         
-        await signupController.buttonContinue();
-        await loginControllers.verifyLogin(name);
-
-    })
-
-    // test("Login account to skip register when scripting", async () => {
-    //     //need to choose want to login or signup
-    //     await aeHomeController.clickLogin();
-    //     await loginControllers.inputEmail(ydLogin.email);
-    //     await loginControllers.inputPassword(ydLogin.password);
-    //     await loginControllers.clickLoginButton();
+    //     await signupController.buttonContinue();
+    //     await loginControllers.verifyLogin(name);
 
     // })
+
+    test("Login account to skip register when scripting", async () => {
+        //need to choose want to login or signup
+        await aeHomeController.clickLogin();
+        await loginControllers.inputEmail(ydLogin.email);
+        await loginControllers.inputPassword(ydLogin.password);
+        await loginControllers.clickLoginButton();
+
+    })
 
     test("Click menu Products", async () => {
         //need to choose want to login or signup
@@ -157,24 +157,56 @@ test.describe('Whole transaction process from registration until download invoic
             expect(priceMatch).toBeTruthy(); // Check if product price exists
           }
       
-        // const search = '2000';
-        // expect(columnValues.some(value => value.includes(search))).toBeTruthy();
-        // const cartItems = await cartControllers.getCartItems();
-        // for (const expected of selectedProducts) {
-        //     const match = cartItems.find(
-        //       item => item.name === expected.name && item.price === expected.price
-        //     );
         
-        //     expect(match).toBeTruthy(); // Fails if not found
-        //   }
-
-        //await cartControllers.clickProceedCheckout();
     })
 
     test("Click proceed to checkout", async () => {
         await cartControllers.clickProceedCheckout();
-        await checkoutControllers.verifyTotalAmount();
+
+        await checkoutControllers.verifyDelivAdr();
+        await checkoutControllers.verifyDelivLastName();
+        await checkoutControllers.verifyDelivCompany();
+        await checkoutControllers.verifyDelivAddress1();
+        await checkoutControllers.verifyDelivAddress2();
+        await checkoutControllers.verifyDelivCityStatePostal();
+        await checkoutControllers.verifyDelivCountry();
+        await checkoutControllers.verifyDelivPhone();
+        await checkoutControllers.verifyBillAdr();
+        await checkoutControllers.verifyBillLastName();
+        await checkoutControllers.verifyBillCompany();
+        await checkoutControllers.verifyBillAddress1();
+        await checkoutControllers.verifyBillAddress2();
+        await checkoutControllers.verifyBillCityStatePostal();
+        await checkoutControllers.verifyBillCountry();
+        await checkoutControllers.verifyBillPhone();
+
+        const rows = await page.locator('#cart_info tbody tr').all();
+        let columnValues: string[] = [];
+      
+        for (const row of rows) {
+          const columns = await row.locator('td').all();
+      
+          for (const col of columns) {
+            const text = (await col.innerText()).trim();
+            if (text !== '') {
+              columnValues.push(text);
+            }
+          }
+        }
         
+        console.log(columnValues);
+        for (const product of selectedProducts) {
+            const nameMatch = columnValues.some(val => val.includes(product.name));
+            const priceMatch = columnValues.some(val => val.includes(product.price));
+            console.log(nameMatch);
+            console.log(priceMatch);
+          
+            expect(nameMatch).toBeTruthy();  // Check if product name exists
+            expect(priceMatch).toBeTruthy(); // Check if product price exists
+          }
+
+        await checkoutControllers.verifyTotalAmount();
+        await checkoutControllers.inputComment();
     })
 
     test("Click place to order", async () => {

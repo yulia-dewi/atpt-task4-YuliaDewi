@@ -22,18 +22,18 @@ export const ydData : configVar = {
   };
 
   export let ydLogin : configdeleteVar = {
-    name: 'ydtest50hxafl',
-    password: 'ydtestlima0hxafl',
-    email: "ydtest50hxafl@yopmail.com"
+    name: 'ydtest5qlpwj3',
+    password: 'ydtestlimaqlpwj3',
+    email: "ydtest5qlpwj3@yopmail.com"
   };
 
   export const selectedProducts: configProduct[] = [
-    //{ id: 1, name: 'Blue Top', price: 'Rs. 500' },
+    { id: 1, name: 'Blue Top', price: 'Rs. 500' },
     //{ id: 2, name: 'Men Tshirt', price: 'Rs. 400' },
     //{ id: 3, name: 'Sleeveless Dress', price: 'Rs. 1000' },
     { id: 33, name: 'Soft Stretch Jeans', price: 'Rs. 799' },
     { id: 40, name: 'Rust Red Linen Saree', price: 'Rs. 3500' },
-    { id: 43, name: 'GRAPHIC DESIGN MEN T SHIRT - BLUE', price: 'Rs. 1389' },
+    //{ id: 43, name: 'GRAPHIC DESIGN MEN T SHIRT - BLUE', price: 'Rs. 1389' },
   ];
 
   export let ydPayment : configPayment = {
